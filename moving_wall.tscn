@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://cksmdt2xrurj4"]
+
+[ext_resource type="Script" uid="uid://dkyrd6rpeyvsw" path="res://moving_wall.gd" id="1_abir0"]
+[ext_resource type="Texture2D" uid="uid://cehkkwowaced2" path="res://assets/tileset.png" id="1_bsjy6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_abir0"]
+texture = ExtResource("1_bsjy6")
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_aqo02"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_abir0")
+
+[sub_resource type="Animation" id="Animation_aqo02"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bsjy6"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 2),
+"transitions": PackedFloat32Array(-1.56, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aqo02"]
+_data = {
+&"RESET": SubResource("Animation_aqo02"),
+&"move": SubResource("Animation_bsjy6")
+}
+
+[node name="Path2D" type="Path2D"]
+script = ExtResource("1_abir0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = -1.5708
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../TileMapLayer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+rotation = -1.5708
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0)
+tile_set = SubResource("TileSet_aqo02")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_aqo02")
+}

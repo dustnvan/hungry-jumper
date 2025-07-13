@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv0d6tauxwkf4"]
+
+[ext_resource type="Texture2D" uid="uid://njijyn651n4u" path="res://assets/spider.png" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(16, 16)
+
+[node name="Player" type="RigidBody2D"]
+collision_layer = 2
+contact_monitor = true
+max_contacts_reported = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_onrkg")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(7.99792, 0.182338)
+target_position = Vector2(-0.273507, 11.9969)
+
+[node name="RightRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-7.99792, -0.182338)
+target_position = Vector2(-0.273507, 11.9969)
+
+[node name="FlipTimer" type="Timer" parent="."]
+wait_time = 0.1
