@@ -6,6 +6,7 @@ signal level_cleared
 @onready var _locked_gate: Node2D = $LockedGate
 @onready var _entrance_light: PointLight2D = $EntranceLight
 @onready var _enemies: Node = $Enemies
+@onready var camera_2d: Camera2D = $Camera2D
 
 var _enemies_in_level: int = 0
 
