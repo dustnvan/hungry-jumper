@@ -6,15 +6,16 @@ const BOUNCE_FORCE := 75.0
 const IDLE_FRAME: int = 0
 const POUNCE_FRAME: int = 1
 const JUMP_FRAME: int = 2
-
-@export var speed := 5.0
+const JUMP_POWER := 4.5
 
 var prev_velocity_x: float = 0.0
 var is_aiming: bool = false
 
 @onready var _sprite_2d: Sprite2D = $Sprite2D
 
-
+func _init() -> void:
+	add_to_group("player")
+	
 
 func _physics_process(delta: float) -> void:
 	prev_velocity_x = velocity.x
@@ -42,4 +43,4 @@ func _physics_process(delta: float) -> void:
 	
 func slingshot(trajectory_vector: Vector2) -> void:	
 	if not is_on_floor(): return
-	velocity = trajectory_vector * speed
+	velocity = trajectory_vector * JUMP_POWER

@@ -18,6 +18,7 @@ _death_effects = ExtResource("2_qi2p4")
 collision_layer = 4
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/AnimatableBody2D"]
+unique_name_in_owner = true
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/AnimatableBody2D"]

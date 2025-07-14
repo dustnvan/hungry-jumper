@@ -3,7 +3,7 @@ class_name Level extends Node2D
 signal level_reached(level: Level)
 signal level_cleared
 
-@onready var _locked_gate: Node2D = $LockedGate
+@onready var _locked_gate: StaticBody2D = $LockedGate
 @onready var _entrance_light: PointLight2D = $EntranceLight
 @onready var _enemies: Node = $Enemies
 @onready var camera_2d: Camera2D = $Camera2D
@@ -22,8 +22,7 @@ func _enemy_died() -> void:
 	if not _enemies_in_level:
 		level_cleared.emit()
 
-
 func open_gate() -> void:
-	_locked_gate.enabled = false
+	_locked_gate.get_node("CollisionShape2D").set_deferred("disabled", true)
 	_entrance_light.enabled = true
 	

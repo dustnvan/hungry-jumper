@@ -19,10 +19,11 @@ func _process(delta):
 	var new_floor = floori(abs(player_pos.y) / room_height)
 	var current_camera = get_viewport().get_camera_2d()
 	
-	if new_floor != current_floor:
+	if new_floor != current_floor and current_floor < len(levels.get_children()):
 		levels.get_children()[current_floor].camera_2d.enabled = false
 		current_floor = new_floor
 		levels.get_children()[current_floor].camera_2d.enabled = true
+
 
 func _on_level_cleared() -> void:
 	if current_floor + 1 >= len(levels.get_children()):
@@ -30,7 +31,7 @@ func _on_level_cleared() -> void:
 	
 	var next_floor = levels.get_children()[current_floor + 1]
 	next_floor.open_gate()
-
+	print("cleared")
 
 func _game_over() -> void:
 	_player.queue_free()
