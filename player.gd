@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 const GRAVITY := 980.0
 const FRICTION := 20.0
-const BOUNCE_FORCE  := 100.0
+const BOUNCE_FORCE := 75.0
 const IDLE_FRAME: int = 0
 const POUNCE_FRAME: int = 1
 const JUMP_FRAME: int = 2

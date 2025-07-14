@@ -3,22 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://efrlnsa5kpee" path="res://enemy.tscn" id="1_fknjn"]
 [ext_resource type="Texture2D" uid="uid://bsaat8vvlvuvw" path="res://Assets/wasp.png" id="2_5kmnj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sgdph"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fknjn"]
 atlas = ExtResource("2_5kmnj")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qs3up"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kmnj"]
 atlas = ExtResource("2_5kmnj")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_o7y8f"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgdph"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sgdph")
+"texture": SubResource("AtlasTexture_fknjn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qs3up")
+"texture": SubResource("AtlasTexture_5kmnj")
 }],
 "loop": true,
 "name": &"default",
@@ -27,5 +27,5 @@ animations = [{
 
 [node name="Wasp" instance=ExtResource("1_fknjn")]
 
-[node name="Sprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_o7y8f")
+[node name="Sprite2D" parent="Path2D/PathFollow2D/AnimatableBody2D" index="0"]
+sprite_frames = SubResource("SpriteFrames_sgdph")

@@ -106,3 +106,8 @@ position = Vector2(90, -79.8827)
 scale = Vector2(0.625, 0.308833)
 enabled = false
 texture = SubResource("GradientTexture2D_kek77")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false

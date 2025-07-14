@@ -20,19 +20,16 @@ fill_to = Vector2(0.197248, 0.316514)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
 
-[node name="Levels" type="Node" parent="."]
+[node name="Levels" type="Node2D" parent="."]
+position = Vector2(0, -90)
 
 [node name="Level1" parent="Levels" instance=ExtResource("5_lquwl")]
-position = Vector2(0, -90)
-metadata/_edit_lock_ = true
 
 [node name="Level2" parent="Levels" instance=ExtResource("3_7mycd")]
-position = Vector2(0, -270)
-metadata/_edit_lock_ = true
+position = Vector2(0, -180)
 
 [node name="Level3" parent="Levels" instance=ExtResource("7_272bh")]
-position = Vector2(0, -451)
-metadata/_edit_lock_ = true
+position = Vector2(0, -360)
 
 [node name="TrajectoryLine" type="Line2D" parent="." node_paths=PackedStringArray("_player")]
 z_index = 50
@@ -44,7 +41,7 @@ _player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_0xm2m")]
 z_index = 50
-position = Vector2(-113, -24)
+position = Vector2(-107, -26)
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
 texture = SubResource("GradientTexture2D_efxa6")
