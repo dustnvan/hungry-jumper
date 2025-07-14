@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://rbwivc7s2rei"]
+
+[ext_resource type="PackedScene" uid="uid://efrlnsa5kpee" path="res://enemy.tscn" id="1_12ydd"]
+[ext_resource type="Texture2D" uid="uid://csr5jbo4sdm44" path="res://Assets/moth.png" id="2_ga7ft"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihia1"]
+atlas = ExtResource("2_ga7ft")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ijvu"]
+atlas = ExtResource("2_ga7ft")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7c2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihia1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ijvu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Moth" instance=ExtResource("1_12ydd")]
+
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_q7c2i")

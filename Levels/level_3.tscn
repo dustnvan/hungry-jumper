@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=4 uid="uid://cme3hrojpn1jy"]
+
+[ext_resource type="PackedScene" uid="uid://brnuaarcxvt78" path="res://level.tscn" id="1_cb8d3"]
+
+[sub_resource type="Gradient" id="Gradient_5vw27"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kek77"]
+gradient = SubResource("Gradient_5vw27")
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[node name="Level3" instance=ExtResource("1_cb8d3")]
+
+[node name="Foreground" parent="." index="3"]
+tile_map_data = PackedByteArray("AADx/wgAAQACAAIAAADy/wgAAQACAAIAAADz/wgAAQACAAIAAAD0/wgAAQACAAIAAAD1/wgAAQACAAIAAAD9/wgAAQACAAIAAAD+/wgAAQACAAIAAAD//wgAAQACAAIAAAAAAAgAAQACAAIAAAABAAgAAQACAAIAAAACAAgAAQACAAIAAAADAAgAAQACAAIAAAALAAgAAQACAAIAAAAMAAgAAQACAAIAAAANAAgAAQACAAIAAAAOAAgAAQACAAIAAAAPAAgAAQACAAIAAADw/wgAAQACAAIAAAA=")
+
+[node name="EntranceLight" parent="." index="5"]
+position = Vector2(-65, 100)
+scale = Vector2(1.09375, 0.308833)
+
+[node name="EntranceLight2" type="PointLight2D" parent="." index="6"]
+position = Vector2(75, 100)
+scale = Vector2(1.09375, 0.308833)
+enabled = false
+texture = SubResource("GradientTexture2D_kek77")

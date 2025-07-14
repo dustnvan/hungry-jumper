@@ -1,5 +1,8 @@
 extends Camera2D
 
+signal floor_changed
+
+
 @export var _player: Player 
 var current_floor: int = 0
 
@@ -15,5 +18,4 @@ func _process(delta):
 		current_floor = new_floor
 		global_position.y = _camera_position_offset - current_floor * room_height
 		
-		Global.floor_changed.emit(current_floor)
-	
+		floor_changed.emit(current_floor)

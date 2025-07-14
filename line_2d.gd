@@ -22,7 +22,6 @@ func _input(event: InputEvent) -> void:
 			
 	if event.is_action_released("mouse_click"):
 		visible = false
-		print("released")
 	
 
 func _get_end_point() -> Vector2:

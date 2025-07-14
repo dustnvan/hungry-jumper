@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvi2wgwj4favb"
-path="res://.godot/imported/bird.png-dd0abc56e4f2651f6cdf2da771bc2f59.ctex"
+uid="uid://csr5jbo4sdm44"
+path="res://.godot/imported/moth.png-83d49d18284ea67a2d5e0d46d88cbb5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/bird.png"
-dest_files=["res://.godot/imported/bird.png-dd0abc56e4f2651f6cdf2da771bc2f59.ctex"]
+source_file="res://Assets/moth.png"
+dest_files=["res://.godot/imported/moth.png-83d49d18284ea67a2d5e0d46d88cbb5d.ctex"]
 
 [params]
 

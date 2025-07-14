@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=4 uid="uid://djtuntd6b8o86"]
+
+[ext_resource type="PackedScene" uid="uid://brnuaarcxvt78" path="res://level.tscn" id="1_ll1bl"]
+[ext_resource type="PackedScene" uid="uid://buwamfx70biyq" path="res://Enemies/wasp.tscn" id="2_kbe2v"]
+
+[sub_resource type="Curve2D" id="Curve2D_kbe2v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -117, -49, 0, 0, 0, 0, -21, -5)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_3mhv4"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_dilhk"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rf6l5"]
+_data = {
+&"RESET": SubResource("Animation_3mhv4"),
+&"move": SubResource("Animation_dilhk")
+}
+
+[node name="Level2" instance=ExtResource("1_ll1bl")]
+
+[node name="LockedGate" parent="." index="2"]
+z_index = 0
+position = Vector2(0, 170)
+tile_map_data = PackedByteArray("AADx//f/AAAEAAIAAADy//f/AAAEAAIAAADz//f/AAAEAAIAAAD0//f/AAAEAAIAAAD1//f/AAAEAAIAAAD2//f/AAAEAAIAAAD3//f/AAAEAAIAAAD4//f/AAAEAAIAAAD5//f/AAAEAAIAAAD6//f/AAAEAAIAAAD7//f/AAAEAAIAAAD8//f/AAAEAAIAAAD9//f/AAAEAAIAAAD+//f/AAAEAAIAAAD///f/AAAEAAIAAAAAAPf/AAAEAAIAAAABAPf/AAAEAAIAAAACAPf/AAAEAAIAAAADAPf/AAAEAAIAAAAEAPf/AAAEAAIAAAAFAPf/AAAEAAIAAAAGAPf/AAAEAAIAAAAHAPf/AAAEAAIAAAAIAPf/AAAEAAIAAAAJAPf/AAAEAAIAAAAKAPf/AAAEAAIAAAALAPf/AAAEAAIAAAAMAPf/AAAEAAIAAAANAPf/AAAEAAIAAAAOAPf/AAAEAAIAAAA=")
+
+[node name="Foreground" parent="." index="3"]
+tile_map_data = PackedByteArray("AADx/wgAAQACAAIAAADy/wgAAQACAAIAAADz/wgAAQACAAIAAAD0/wgAAQACAAIAAAD1/wgAAQACAAIAAAD2/wgAAQACAAIAAAD3/wgAAQACAAIAAAD4/wgAAQACAAIAAAD5/wgAAQACAAIAAAD6/wgAAQACAAIAAAD7/wgAAQACAAIAAAD8/wgAAQACAAIAAAD9/wgAAQACAAIAAAD+/wgAAQACAAIAAAD//wgAAQACAAIAAAAAAAgAAQACAAIAAAABAAgAAQACAAIAAAAIAAgAAQACAAIAAAAJAAgAAQACAAIAAAAKAAgAAQACAAIAAAALAAgAAQACAAIAAAAMAAgAAQACAAIAAAANAAgAAQACAAIAAAAOAAgAAQACAAIAAADw/wgAAQACAAIAAAAPAAgAAQACAAIAAAALAAMAAQACAAIAAAALAAIAAQACAAIAAAALAAEAAQACAAIAAAAMAAAAAQACAAIAAAALAAAAAQACAAIAAAAKAAAAAQACAAIAAAAJAAAAAQACAAIAAAAIAAAAAQACAAIAAAAIAP//AQACAAIAAAAIAP7/AQACAAIAAAAIAP3/AQACAAIAAAD2/wAAAQACAAIAAAD2/wEAAQACAAIAAAD2/wIAAQACAAIAAAD2/wMAAQACAAIAAAD2/wQAAQACAAIAAAD2/wUAAQACAAIAAAD2/wYAAQACAAIAAAD2/wcAAQACAAIAAAD1/wIAAQACAAIAAAD0/wIAAQACAAIAAADz/wIAAQACAAIAAAD3/wAAAQACAAIAAAD4/wAAAQACAAIAAAD5/wAAAQACAAIAAAD6/wAAAQACAAIAAAD7/wAAAQACAAIAAAD8/wAAAQACAAIAAAD9/wAAAQACAAIAAAD+/wAAAQACAAIAAAD//wAAAQACAAIAAAAAAAAAAQACAAIAAAABAAAAAQACAAIAAAA=")
+
+[node name="EntranceLight" parent="." index="5"]
+position = Vector2(50, 100)
+scale = Vector2(0.9375, 0.308833)
+
+[node name="Wasp" parent="." index="6" instance=ExtResource("2_kbe2v")]
+position = Vector2(64, -63)
+
+[node name="Path2D" type="Path2D" parent="." index="7"]
+position = Vector2(0, 3)
+curve = SubResource("Curve2D_kbe2v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_rf6l5")
+}
+autoplay = "move"
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="1"]
+progress = 28.1608
+loop = false
+
+[node name="Wasp2" parent="Path2D/PathFollow2D" index="1" instance=ExtResource("2_kbe2v")]
+position = Vector2(14.3513, 92.7246)
+rotation = -0.429762

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://buwh50hchyjih"]
 
-[ext_resource type="Texture2D" uid="uid://c4hgcbxouj2l3" path="res://assets/blood_splatter.png" id="1_5vtje"]
+[ext_resource type="Texture2D" uid="uid://c4hgcbxouj2l3" path="res://Assets/blood_splatter.png" id="1_5vtje"]
 
 [sub_resource type="Curve" id="Curve_opfj6"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.977941, 0), 0.0, 0.0, 0, 0]
@@ -96,6 +96,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.501961), Color(1, 0, 0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.63333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b7ed4"]

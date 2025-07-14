@@ -2,13 +2,13 @@ extends Line2D
 
 const GRAVITY := 980.0
 const MAX_VELOCITY := 100.0
+const MAX_ZOOM := 1.5
 
 var _is_dragging: bool = false
 var _mouse_origin_pos: Vector2
 var _mouse_end_pos: Vector2
 
 @export var _player: Player
-
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click"):
@@ -26,12 +26,17 @@ func _input(event: InputEvent) -> void:
 		# Allows the user to drag back without going back to threshold
 		if _mouse_origin_pos.distance_to(_mouse_end_pos) > MAX_VELOCITY:
 			_mouse_origin_pos = _mouse_end_pos - _mouse_origin_pos.direction_to(_mouse_end_pos) * MAX_VELOCITY
-
+		
+		_player.is_aiming = true
+		
 	if event.is_action_released("mouse_click"):
 		_is_dragging = false
 		set_point_position(1, Vector2.ZERO)
 		if _player.has_method("slingshot"):
 			_player.slingshot(get_trajectory_vector())
+
+		_player.is_aiming = false
+
 		
 
 func _physics_process(delta: float) -> void:
