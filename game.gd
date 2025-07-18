@@ -10,6 +10,8 @@ var current_floor = 0
 
 
 func _ready() -> void:
+	Global.start()
+	
 	for level in levels.get_children():
 		level.level_cleared.connect(_on_level_cleared)
 		

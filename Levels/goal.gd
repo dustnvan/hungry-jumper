@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 		_player.sprite_2d.frame = 0
 
 func _on_body_entered(player: Player) -> void:
+	Global.stop()
 	_player = player
 	player.entered_web = true
 	await get_tree().create_timer(1).timeout

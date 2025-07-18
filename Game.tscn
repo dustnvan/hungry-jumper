@@ -113,7 +113,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(142, 168)
+position = Vector2(149, -1098)
 
 [node name="TrajectoryLine" type="Line2D" parent="Player" node_paths=PackedStringArray("_player")]
 z_index = 50
@@ -125,7 +125,7 @@ _player = NodePath("../Player")
 
 [node name="Player" parent="Player" node_paths=PackedStringArray("trajectory_line") instance=ExtResource("9_4c57u")]
 z_index = 50
-position = Vector2(-270, -186)
+position = Vector2(-170, -282)
 trajectory_line = NodePath("../TrajectoryLine")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player/Player"]
@@ -141,6 +141,7 @@ anchors_preset = 0
 offset_left = -160.0
 offset_top = -180.0
 offset_right = 159.0
+mouse_filter = 1
 script = ExtResource("7_5vw27")
 
 [node name="Label" type="Label" parent="CanvasLayer/Tutorial"]
