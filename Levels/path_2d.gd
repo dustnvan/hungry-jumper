@@ -1,7 +1,7 @@
 extends Path2D
 
 @export var actor: Node2D 
-@export var speed: float = 10.0
+@export var speed: float = 50.0
 
 var last_position: Vector2
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D

@@ -119,7 +119,7 @@ position = Vector2(40, 266)
 z_index = 50
 points = PackedVector2Array(0, 0, 0, 0)
 width = 1.0
-default_color = Color(0, 0.364706, 1, 0.541176)
+default_color = Color(0.875584, 0.348004, 3.00336e-05, 1)
 script = ExtResource("8_kek77")
 _player = NodePath("../Player")
 
