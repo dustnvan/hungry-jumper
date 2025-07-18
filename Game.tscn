@@ -113,7 +113,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(149, -1098)
+position = Vector2(40, 266)
 
 [node name="TrajectoryLine" type="Line2D" parent="Player" node_paths=PackedStringArray("_player")]
 z_index = 50
