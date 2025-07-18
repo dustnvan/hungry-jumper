@@ -1,31 +1,168 @@
-[gd_scene load_steps=6 format=3 uid="uid://buwamfx70biyq"]
+[gd_scene load_steps=16 format=3 uid="uid://buwamfx70biyq"]
 
 [ext_resource type="PackedScene" uid="uid://efrlnsa5kpee" path="res://enemy.tscn" id="1_fknjn"]
 [ext_resource type="Texture2D" uid="uid://bsaat8vvlvuvw" path="res://Assets/wasp.png" id="2_5kmnj"]
+[ext_resource type="AudioStream" uid="uid://cvy16e3dymbps" path="res://Assets/Sounds/clang.mp3" id="3_5kmnj"]
+[ext_resource type="Script" uid="uid://cnax1d0klcbc2" path="res://Enemies/stinger.gd" id="3_sgdph"]
+[ext_resource type="Shader" uid="uid://uhnrcocldcm7" path="res://Enemies/stinger.gdshader" id="5_qs3up"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fknjn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgdph"]
 atlas = ExtResource("2_5kmnj")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5kmnj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7y8f"]
 atlas = ExtResource("2_5kmnj")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_sgdph"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v887x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fknjn")
+"texture": SubResource("AtlasTexture_sgdph")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5kmnj")
+"texture": SubResource("AtlasTexture_o7y8f")
 }],
 "loop": true,
 "name": &"default",
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qs3up"]
+radius = 5.09902
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v887x"]
+resource_local_to_scene = true
+shader = ExtResource("5_qs3up")
+shader_parameter/flash_stinger = false
+shader_parameter/flash_color = Vector4(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs3up"]
+atlas = ExtResource("2_5kmnj")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o7y8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs3up")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_o7y8f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stinger/StingerSprite:material:shader_parameter/flash_stinger")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:is_invincible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stinger/StingerSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qs3up"]
+resource_name = "Sting"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stinger/StingerSprite:material:shader_parameter/flash_stinger")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox:is_invincible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stinger/StingerSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v887x"]
+_data = {
+&"RESET": SubResource("Animation_o7y8f"),
+&"Sting": SubResource("Animation_qs3up")
+}
+
 [node name="Wasp" instance=ExtResource("1_fknjn")]
 
-[node name="Sprite2D" parent="Path2D/PathFollow2D/AnimatableBody2D" index="0"]
-sprite_frames = SubResource("SpriteFrames_sgdph")
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_v887x")
+
+[node name="Stinger" type="Area2D" parent="." index="1"]
+rotation = -0.281886
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_sgdph")
+
+[node name="StingerSound" type="AudioStreamPlayer2D" parent="Stinger" index="0"]
+rotation = 0.281886
+stream = ExtResource("3_5kmnj")
+volume_db = 1.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stinger" index="1"]
+position = Vector2(-5.38511, 7.81029)
+shape = SubResource("CircleShape2D_qs3up")
+
+[node name="StingerSprite" type="AnimatedSprite2D" parent="Stinger" index="2"]
+material = SubResource("ShaderMaterial_v887x")
+sprite_frames = SubResource("SpriteFrames_o7y8f")
+
+[node name="StingAnimation" type="AnimationPlayer" parent="Stinger" index="3"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_v887x")
+}

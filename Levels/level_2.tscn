@@ -1,87 +1,19 @@
-[gd_scene load_steps=12 format=4 uid="uid://djtuntd6b8o86"]
+[gd_scene load_steps=3 format=4 uid="uid://djtuntd6b8o86"]
 
 [ext_resource type="PackedScene" uid="uid://brnuaarcxvt78" path="res://level.tscn" id="1_ll1bl"]
-[ext_resource type="PackedScene" uid="uid://buwamfx70biyq" path="res://Enemies/wasp.tscn" id="2_kbe2v"]
-[ext_resource type="Script" uid="uid://w82xoesjixqk" path="res://enemy.gd" id="3_bcgyv"]
-[ext_resource type="TileSet" uid="uid://dvm5m5clchqbb" path="res://Levels/level_1_platforms_tileset.tres" id="3_s275v"]
-[ext_resource type="PackedScene" uid="uid://buwh50hchyjih" path="res://death_effects.tscn" id="4_fbld2"]
-[ext_resource type="Texture2D" uid="uid://bsaat8vvlvuvw" path="res://Assets/wasp.png" id="5_s275v"]
-
-[sub_resource type="Curve2D" id="Curve2D_pml6m"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -8, -18, 0, 0, 0, 0, -32, -15, 0, 0, 0, 0, -35, 4, 0, 0, 0, 0, 0, 2)
-}
-point_count = 5
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fknjn"]
-atlas = ExtResource("5_s275v")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5kmnj"]
-atlas = ExtResource("5_s275v")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sgdph"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fknjn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5kmnj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
-radius = 8.0
+[ext_resource type="PackedScene" uid="uid://rbwivc7s2rei" path="res://Enemies/moth.tscn" id="2_kbe2v"]
 
 [node name="Level2" instance=ExtResource("1_ll1bl")]
 
-[node name="Foreground" parent="." index="5"]
-tile_map_data = PackedByteArray("AAD2/wUAAAAFAAIAAAD3/wUAAAAFAAIAAAD4/wUAAAAFAAIAAAD5/wUAAAAFAAIAAAD6/wUAAAAFAAIAAAD7/wUAAAAFAAIAAAD8/wUAAAAFAAIAAAD9/wUAAAAFAAIAAAD+/wUAAAAFAAIAAAD//wUAAAAFAAIAAAD2/wYAAAAEAAMAAAD3/wYAAAAFAAMAAAD4/wYAAAAFAAMAAAD2/wcAAAAEAAQAAAD4/wcAAAAGAAQAAAD3/wcAAAAFAAQAAAACAAUAAAAFAAIAAAABAAUAAAAFAAIAAAAAAAUAAAAFAAIAAAD8/wMAAAAEAAMAAAD8/wQAAAAEAAQAAAD9/wMAAAAFAAMAAAD9/wQAAAAFAAQAAAD+/wMAAAAGAAMAAAD+/wQAAAAGAAQAAAD8//7/AAAEAAIAAAD9//7/AAAFAAIAAAD+//7/AAAGAAIAAAD8/wIAAAAEAAMAAAD9/wIAAAAFAAMAAAD+/wIAAAAGAAMAAAD8/wEAAAAKAAIAAAD9/wEAAAAFAAMAAAD+/wEAAAAGAAMAAAD9/wAAAAAFAAMAAAD+/wAAAAAGAAMAAAD8////AAAEAAMAAAD9////AAAFAAMAAAD+////AAAGAAMAAAADAAUAAAAFAAIAAAAEAAUAAAAFAAIAAAAAAAAAAAAEAAIAAAAAAAEAAAAEAAMAAAAAAAIAAAAEAAQAAAABAAAAAAAFAAIAAAABAAEAAAAFAAMAAAABAAIAAAAFAAQAAAACAAAAAAAGAAIAAAACAAEAAAAGAAMAAAACAAIAAAAGAAQAAAD6/wYAAAAEAAQAAAD7/wYAAAAFAAQAAAD8/wYAAAAFAAQAAAD9/wYAAAAFAAQAAAD+/wYAAAAFAAQAAAD//wYAAAAGAAQAAAD8/wAAAAAKAAQAAAD7/wEAAAAFAAQAAAD6/wEAAAAFAAQAAAD5/wEAAAAEAAQAAAD5/wAAAAAEAAIAAAD7/wAAAAAFAAIAAAD6/wAAAAAFAAIAAAA=")
-tile_set = ExtResource("3_s275v")
+[node name="Foreground" parent="." index="4"]
+tile_map_data = PackedByteArray("AAD2/wUAAAACAAMAAAD3/wUAAAACAAMAAAD4/wUAAAACAAMAAAD5/wUAAAACAAMAAAD6/wUAAAACAAMAAAD7/wUAAAACAAMAAAD8/wUAAAACAAMAAAD9/wUAAAACAAMAAAD+/wUAAAACAAMAAAD//wUAAAACAAMAAAACAAUAAAACAAMAAAABAAUAAAACAAMAAAAAAAUAAAACAAMAAAD8/wMAAAAFAAMAAAD8/wQAAAAFAAQAAAD9/wMAAAAFAAMAAAD9/wQAAAAFAAQAAAD+/wMAAAAGAAMAAAD+/wQAAAAGAAQAAAD8/wIAAAAJAAQAAAD9/wIAAAAFAAMAAAD+/wIAAAAGAAMAAAD9/wEAAAAFAAMAAAD+/wEAAAAGAAMAAAD9/wAAAAAFAAMAAAD+/wAAAAAGAAMAAAADAAUAAAACAAMAAAAEAAUAAAACAAMAAAABAAIAAAABAAIAAAACAAIAAAABAAIAAAADAAIAAAABAAIAAAD8/wAAAAAEAAMAAAD+////AAAGAAIAAAD9////AAAFAAIAAAD8////AAAEAAIAAAAEAAIAAAAJAAQAAAAEAAEAAAAEAAMAAAAEAAAAAAAEAAMAAAAFAAAAAAAFAAMAAAAFAAEAAAAFAAMAAAAFAAIAAAAFAAQAAAAGAAIAAAAFAAQAAAAGAAEAAAAFAAMAAAAGAAAAAAAFAAMAAAAFAP//AAAFAAIAAAAEAP//AAAEAAIAAAAGAP//AAAFAAIAAAAHAP//AAAGAAIAAAAHAAAAAAAGAAMAAAAHAAEAAAAGAAMAAAAHAAIAAAAGAAQAAAD8/wEAAAAEAAMAAAD7/wIAAAAFAAIAAAD6/wIAAAAFAAIAAAD5/wIAAAAFAAIAAAD4/wIAAAAFAAIAAAABAP3/AAABAAIAAAACAP3/AAABAAIAAAD+//v/AAABAAIAAAD///v/AAABAAIAAAA=")
 
-[node name="EntranceLight" parent="." index="6"]
-position = Vector2(120.25, 107.559)
-scale = Vector2(1.24219, 0.545042)
+[node name="EntranceLight" parent="." index="5"]
+position = Vector2(120, 122)
+scale = Vector2(1.25, 1)
 
-[node name="Wasp" parent="Enemies" index="0" instance=ExtResource("2_kbe2v")]
-position = Vector2(-57, -48)
+[node name="Moth" parent="Enemies" index="0" instance=ExtResource("2_kbe2v")]
+position = Vector2(-86, 64)
 
-[node name="Wasp2" type="Node2D" parent="Enemies" index="1"]
-position = Vector2(-111, 65)
-script = ExtResource("3_bcgyv")
-_death_effects = ExtResource("4_fbld2")
-
-[node name="Path2D" type="Path2D" parent="Enemies/Wasp2" index="0"]
-curve = SubResource("Curve2D_pml6m")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Wasp2/Path2D" index="0"]
-position = Vector2(-0.516881, -0.227592)
-progress = 1.54587
-rotates = false
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Enemies/Wasp2/Path2D/PathFollow2D" index="0"]
-collision_layer = 4
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Enemies/Wasp2/Path2D/PathFollow2D/AnimatableBody2D" index="0"]
-unique_name_in_owner = true
-sprite_frames = SubResource("SpriteFrames_sgdph")
-autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Wasp2/Path2D/PathFollow2D/AnimatableBody2D" index="1"]
-shape = SubResource("CircleShape2D_4gyqm")
-
-[node name="Hurtbox" type="Area2D" parent="Enemies/Wasp2/Path2D/PathFollow2D/AnimatableBody2D" index="2"]
-unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Wasp2/Path2D/PathFollow2D/AnimatableBody2D/Hurtbox" index="0"]
-shape = SubResource("CircleShape2D_4gyqm")
-
-[node name="Camera2D" parent="." index="8"]
-enabled = true
+[node name="Moth2" parent="Enemies" index="1" instance=ExtResource("2_kbe2v")]
+position = Vector2(111, -30)

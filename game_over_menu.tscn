@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dn15a5kt0u65j"]
+
+[ext_resource type="Script" uid="uid://bb3t5iih8y0bi" path="res://game_over_menu.gd" id="1_14ib6"]
+[ext_resource type="FontFile" uid="uid://d1u1tm0cydedx" path="res://Assets/SupremeSpike-KVO8D.otf" id="2_prwox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wp3el"]
+font = ExtResource("2_prwox")
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14ib6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Thanks for playing!"
+label_settings = SubResource("LabelSettings_wp3el")
+
+[node name="ReplayButton" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Replay"

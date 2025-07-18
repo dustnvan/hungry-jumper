@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv0f6atch7u2y"]
+
+[ext_resource type="Script" uid="uid://15586cq4ll5h" path="res://Levels/web.gd" id="1_vpmhx"]
+[ext_resource type="Texture2D" uid="uid://cxukk4p5d5oum" path="res://Assets/web.png" id="2_hlemi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpmhx"]
+radius = 8.0
+
+[node name="Web" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vpmhx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hlemi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vpmhx")

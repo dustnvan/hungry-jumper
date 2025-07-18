@@ -1,44 +1,48 @@
-[gd_scene load_steps=8 format=3 uid="uid://6s2rrrd706qe"]
+[gd_scene load_steps=5 format=3 uid="uid://bwjd6r0flhuxd"]
 
-[ext_resource type="PackedScene" uid="uid://w2kbk2rss7db" path="res://player.tscn" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://0830j8rr4v1s" path="res://main.gd" id="1_7mycd"]
-[ext_resource type="Script" uid="uid://cpdbw5xrbfyh0" path="res://trajectory_line.gd" id="3_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://djtuntd6b8o86" path="res://Levels/level_2.tscn" id="3_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bjcxbqyistkhw" path="res://Levels/level_1.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cosaf4r7nbe1v" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Texture2D" uid="uid://c115480clmbog" path="res://Assets/menu.png" id="2_h2yge"]
+[ext_resource type="FontFile" uid="uid://d1u1tm0cydedx" path="res://Assets/SupremeSpike-KVO8D.otf" id="7_272bh"]
 
-[sub_resource type="Gradient" id="Gradient_4c57u"]
-colors = PackedColorArray(0.355314, 0.355314, 0.355314, 1, 0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_ig7tw"]
+font = ExtResource("7_272bh")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_efxa6"]
-gradient = SubResource("Gradient_4c57u")
-fill = 1
-fill_from = Vector2(0.509174, 0.568807)
-fill_to = Vector2(0.197248, 0.316514)
-
-[node name="Main" type="Node2D"]
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7mycd")
 
-[node name="Levels" type="Node2D" parent="."]
-position = Vector2(0, -90)
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_h2yge")
 
-[node name="Level1" parent="Levels" instance=ExtResource("5_lquwl")]
+[node name="MainMenu" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Level2" parent="Levels" instance=ExtResource("3_7mycd")]
-position = Vector2(0, -180)
+[node name="Label" type="Label" parent="MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Hungry Jumper"
+label_settings = SubResource("LabelSettings_ig7tw")
 
-[node name="TrajectoryLine" type="Line2D" parent="." node_paths=PackedStringArray("_player")]
-z_index = 50
-points = PackedVector2Array(0, 0, 0, 0)
-width = 1.0
-default_color = Color(0, 0.364706, 1, 0.541176)
-script = ExtResource("3_1bvp3")
-_player = NodePath("../Player")
-
-[node name="Player" parent="." instance=ExtResource("1_0xm2m")]
-z_index = 50
-position = Vector2(-126, -28)
-
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
-texture = SubResource("GradientTexture2D_efxa6")
-texture_scale = 3.0
-metadata/_edit_lock_ = true
+[node name="PlayButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "PLAY GAME"

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=4 uid="uid://b21wnj3euncwe"]
+
+[ext_resource type="PackedScene" uid="uid://brnuaarcxvt78" path="res://level.tscn" id="1_ymuad"]
+[ext_resource type="Texture2D" uid="uid://28o5euy3o8nr" path="res://Assets/ending_web.png" id="2_1q8r4"]
+[ext_resource type="Script" uid="uid://3gch1yxinyqo" path="res://Levels/goal.gd" id="2_pmuci"]
+[ext_resource type="PackedScene" uid="uid://dv0f6atch7u2y" path="res://web.tscn" id="4_pmuci"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35lck"]
+size = Vector2(320, 81)
+
+[node name="GoalLevel" instance=ExtResource("1_ymuad")]
+
+[node name="Foreground" parent="." index="4"]
+tile_map_data = PackedByteArray("AAD2/wUAAAACAAMAAAD3/wUAAAACAAMAAAD4/wUAAAACAAMAAAD5/wUAAAACAAMAAAD6/wUAAAACAAMAAAD7/wUAAAACAAMAAAD8/wUAAAACAAMAAAD9/wUAAAACAAMAAAACAAUAAAACAAMAAAADAAUAAAACAAMAAAAEAAUAAAACAAMAAAAFAAUAAAACAAMAAAAGAAUAAAACAAMAAAAHAAUAAAACAAMAAAAIAAUAAAACAAMAAAAJAAUAAAACAAMAAAA=")
+
+[node name="EntranceLight" parent="." index="5"]
+position = Vector2(0.5, 122)
+scale = Vector2(0.984375, 1)
+
+[node name="Goal" type="Area2D" parent="." index="10"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_pmuci")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal" index="0"]
+texture = ExtResource("2_1q8r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="1"]
+position = Vector2(0, -55.5)
+shape = SubResource("RectangleShape2D_35lck")
+
+[node name="Web" parent="." index="11" instance=ExtResource("4_pmuci")]
+position = Vector2(-126, 29)
+
+[node name="Web2" parent="." index="12" instance=ExtResource("4_pmuci")]
+position = Vector2(-60, 29)
+
+[node name="Web3" parent="." index="13" instance=ExtResource("4_pmuci")]
+position = Vector2(67, 29)
+
+[node name="Web4" parent="." index="14" instance=ExtResource("4_pmuci")]
+position = Vector2(130, 29)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="15"]

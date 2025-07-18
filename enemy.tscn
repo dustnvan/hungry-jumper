@@ -1,33 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://efrlnsa5kpee"]
+[gd_scene load_steps=5 format=3 uid="uid://efrlnsa5kpee"]
 
 [ext_resource type="Script" uid="uid://w82xoesjixqk" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://buwh50hchyjih" path="res://death_effects.tscn" id="2_qi2p4"]
+[ext_resource type="Script" uid="uid://bccquawt0ci4e" path="res://hurtbox.gd" id="3_qi2p4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
-radius = 8.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7y8f"]
+radius = 5.38516
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_4gyqm")
 _death_effects = ExtResource("2_qi2p4")
 
-[node name="Path2D" type="Path2D" parent="."]
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D/PathFollow2D"]
-collision_layer = 4
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/AnimatableBody2D"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/AnimatableBody2D"]
-shape = SubResource("CircleShape2D_4gyqm")
-
-[node name="Hurtbox" type="Area2D" parent="Path2D/PathFollow2D/AnimatableBody2D"]
+[node name="Hurtbox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 8
 collision_mask = 2
+script = ExtResource("3_qi2p4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/AnimatableBody2D/Hurtbox"]
-shape = SubResource("CircleShape2D_4gyqm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_o7y8f")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=4 uid="uid://b5f6rqn5cgcx1"]
+
+[ext_resource type="PackedScene" uid="uid://brnuaarcxvt78" path="res://level.tscn" id="1_a6k8o"]
+[ext_resource type="PackedScene" uid="uid://dv0f6atch7u2y" path="res://web.tscn" id="2_ftuqy"]
+[ext_resource type="PackedScene" uid="uid://buwamfx70biyq" path="res://Enemies/wasp.tscn" id="2_pses1"]
+[ext_resource type="Script" uid="uid://ccmtvn1q3pnr2" path="res://Levels/path_2d.gd" id="3_5fc7w"]
+[ext_resource type="PackedScene" uid="uid://rbwivc7s2rei" path="res://Enemies/moth.tscn" id="8_sio2j"]
+
+[sub_resource type="Curve2D" id="Curve2D_4lr4b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -1, 0, 0, 0, 0, -2, -42, 0, 0, 0, 0, 49, -46, 0, 0, 0, 0, 49, -1, 0, 0, 0, 0, -1, -1)
+}
+point_count = 5
+
+[node name="Level5" instance=ExtResource("1_a6k8o")]
+
+[node name="Foreground" parent="." index="4"]
+tile_map_data = PackedByteArray("AAD5/wUAAAACAAMAAAD6/wUAAAACAAMAAAD7/wUAAAACAAMAAAD8/wUAAAACAAMAAAD9/wUAAAACAAMAAAD+/wUAAAACAAMAAAD//wUAAAACAAMAAAAAAAUAAAACAAMAAAABAAUAAAACAAMAAAACAAUAAAACAAMAAAADAAUAAAACAAMAAAAEAAUAAAACAAMAAAAFAAUAAAACAAMAAAAGAAUAAAACAAMAAAAHAAUAAAACAAMAAAAIAAUAAAACAAMAAAAJAAUAAAACAAMAAAD7//7/AAAEAAIAAAD7////AAAEAAMAAAD7/wAAAAAEAAQAAAD8//7/AAAFAAIAAAD8////AAAFAAMAAAD8/wAAAAAFAAQAAAD9//7/AAAGAAIAAAD9////AAAGAAMAAAD9/wAAAAAGAAQAAAD///z/AAACAAMAAAAAAPz/AAACAAMAAAABAPz/AAACAAMAAAACAPz/AAACAAMAAAA=")
+
+[node name="EntranceLight" parent="." index="5"]
+position = Vector2(-136, 122)
+scale = Vector2(0.75, 1)
+
+[node name="Moth" parent="Enemies" index="0" instance=ExtResource("8_sio2j")]
+position = Vector2(-128, -37)
+
+[node name="Path2D" type="Path2D" parent="Enemies" index="1" node_paths=PackedStringArray("actor")]
+position = Vector2(88, -32)
+curve = SubResource("Curve2D_4lr4b")
+script = ExtResource("3_5fc7w")
+actor = NodePath("PathFollow2D/Wasp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D" index="0"]
+position = Vector2(-1, -1)
+rotates = false
+
+[node name="Wasp" parent="Enemies/Path2D/PathFollow2D" index="0" instance=ExtResource("2_pses1")]
+
+[node name="Web" parent="." index="10" instance=ExtResource("2_ftuqy")]
+position = Vector2(80, 34)
+
+[node name="Web2" parent="." index="11" instance=ExtResource("2_ftuqy")]
+position = Vector2(26, 0)
+
+[node name="Web3" parent="." index="12" instance=ExtResource("2_ftuqy")]
+position = Vector2(-146, -17)
