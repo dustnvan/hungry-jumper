@@ -125,7 +125,7 @@ _player = NodePath("../Player")
 
 [node name="Player" parent="Player" node_paths=PackedStringArray("trajectory_line") instance=ExtResource("9_4c57u")]
 z_index = 50
-position = Vector2(-189, -1269)
+position = Vector2(-270, -186)
 trajectory_line = NodePath("../TrajectoryLine")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player/Player"]
