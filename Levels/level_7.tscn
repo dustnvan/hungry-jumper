@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=4 uid="uid://cytq5d3ovwflt"]
+
+[ext_resource type="PackedScene" uid="uid://brnuaarcxvt78" path="res://level.tscn" id="1_bh5jb"]
+[ext_resource type="PackedScene" uid="uid://rbwivc7s2rei" path="res://Enemies/moth.tscn" id="2_0musb"]
+[ext_resource type="PackedScene" uid="uid://dv0f6atch7u2y" path="res://web.tscn" id="3_74s8n"]
+
+[node name="Level7" instance=ExtResource("1_bh5jb")]
+
+[node name="Foreground" parent="." index="4"]
+tile_map_data = PackedByteArray("AAACAAUAAAACAAMAAAADAAUAAAACAAMAAAAEAAUAAAACAAMAAAAFAAUAAAACAAMAAAAGAAUAAAACAAMAAAAHAAUAAAACAAMAAAAIAAUAAAACAAMAAAAJAAUAAAACAAMAAAD2/wUAAAACAAMAAAD3/wUAAAACAAMAAAD4/wUAAAACAAMAAAD5/wUAAAACAAMAAAD6/wUAAAACAAMAAAD7/wUAAAACAAMAAAD8/wUAAAACAAMAAAD9/wUAAAACAAMAAAADAAIAAAAFAAQAAAAEAAIAAAAFAAQAAAAFAAIAAAAFAAQAAAAGAAIAAAAFAAQAAAAHAAIAAAAFAAQAAAAIAAIAAAAFAAQAAAAJAAIAAAAFAAQAAAD///3/AAAFAAMAAAD///z/AAAFAAMAAAD7/wIAAAAFAAMAAAD7/wEAAAAFAAMAAAD7/wAAAAAFAAMAAAD7////AAAFAAMAAAD7//7/AAAFAAMAAAACAAIAAAAEAAQAAAD///v/AAAFAAMAAAACAAEAAAAEAAMAAAACAAAAAAAEAAMAAAD4/wIAAAABAAIAAAD4////AAABAAIAAAADAAAAAAAFAAMAAAADAAEAAAAFAAMAAAAEAAAAAAAIAAQAAAAEAAEAAAAFAAMAAAAFAAAAAAAFAAIAAAAFAAEAAAAFAAMAAAAGAAAAAAAFAAIAAAAGAAEAAAAFAAMAAAAHAAAAAAAFAAIAAAAHAAEAAAAFAAMAAAAIAAAAAAAFAAIAAAAIAAEAAAAFAAMAAAAJAAAAAAAFAAIAAAAJAAEAAAAFAAMAAAADAP//AAAFAAMAAAACAP//AAAEAAMAAAAEAP//AAAGAAMAAAACAP7/AAAEAAIAAAADAP7/AAAFAAIAAAAEAP7/AAAGAAIAAAA=")
+
+[node name="EntranceLight" parent="." index="5"]
+position = Vector2(0, 122)
+
+[node name="Moth" parent="Enemies" index="0" instance=ExtResource("2_0musb")]
+position = Vector2(104, -32)
+
+[node name="Web" parent="." index="10" instance=ExtResource("3_74s8n")]
+position = Vector2(-55, -9)
+
+[node name="Web2" parent="." index="11" instance=ExtResource("3_74s8n")]
+position = Vector2(18, -23)
+
+[node name="Moth" parent="." index="12" instance=ExtResource("2_0musb")]
+position = Vector2(-28, -55)

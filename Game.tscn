@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://6s2rrrd706qe"]
+[gd_scene load_steps=26 format=3 uid="uid://6s2rrrd706qe"]
 
 [ext_resource type="Script" uid="uid://0830j8rr4v1s" path="res://game.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://djtuntd6b8o86" path="res://Levels/level_2.tscn" id="3_7mycd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c8h6c3lptp58h" path="res://control.gd" id="7_5vw27"]
 [ext_resource type="FontFile" uid="uid://d1u1tm0cydedx" path="res://Assets/SupremeSpike-KVO8D.otf" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://b5f6rqn5cgcx1" path="res://Levels/level_6.tscn" id="7_dg77c"]
+[ext_resource type="PackedScene" uid="uid://cytq5d3ovwflt" path="res://Levels/level_7.tscn" id="8_0yprl"]
 [ext_resource type="Script" uid="uid://cpdbw5xrbfyh0" path="res://trajectory_line.gd" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://2bdicod0oy04" path="res://Levels/Level_5.tscn" id="8_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://b21wnj3euncwe" path="res://Levels/goal_level.tscn" id="8_yyih5"]
@@ -100,8 +101,11 @@ position = Vector2(0, -720)
 [node name="Level6" parent="Levels" instance=ExtResource("7_dg77c")]
 position = Vector2(0, -900)
 
+[node name="Level7" parent="Levels" instance=ExtResource("8_0yprl")]
+position = Vector2(0, -1081)
+
 [node name="GoalLevel" parent="Levels" instance=ExtResource("8_yyih5")]
-position = Vector2(0, -1080)
+position = Vector2(0, -1261)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_elkpi")
@@ -109,7 +113,7 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(-86, 1063)
+position = Vector2(142, 168)
 
 [node name="TrajectoryLine" type="Line2D" parent="Player" node_paths=PackedStringArray("_player")]
 z_index = 50
@@ -121,7 +125,7 @@ _player = NodePath("../Player")
 
 [node name="Player" parent="Player" node_paths=PackedStringArray("trajectory_line") instance=ExtResource("9_4c57u")]
 z_index = 50
-position = Vector2(-42, -1082)
+position = Vector2(-189, -1269)
 trajectory_line = NodePath("../TrajectoryLine")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player/Player"]
