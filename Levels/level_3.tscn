@@ -13,7 +13,7 @@ position = Vector2(-8, 122)
 scale = Vector2(1.25, 1)
 
 [node name="Wasp" parent="Enemies" index="0" instance=ExtResource("2_5lru4")]
-position = Vector2(-136, -16)
+position = Vector2(18, -52)
 
 [node name="Wasp2" parent="Enemies" index="1" instance=ExtResource("2_5lru4")]
 position = Vector2(151, -16)

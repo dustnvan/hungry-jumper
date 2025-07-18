@@ -8,6 +8,8 @@ const POUNCE_FRAME: int = 1
 const JUMP_FRAME: int = 2
 const JUMP_POWER := 3.5
 
+@export var trajectory_line: Line2D
+
 var prev_velocity_x: float = 0.0
 var is_aiming: bool = false
 var _just_jumped := false
@@ -20,9 +22,11 @@ var entered_web := false
 @onready var jump_landing: AudioStreamPlayer2D = $JumpLanding
 @onready var sleep_particles: GPUParticles2D = $SleepParticles
 
+
+
 func _init() -> void:
 	add_to_group("player")
-	
+
 
 func _physics_process(delta: float) -> void:
 	prev_velocity_x = velocity.x

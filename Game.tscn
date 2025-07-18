@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://6s2rrrd706qe"]
+[gd_scene load_steps=25 format=3 uid="uid://6s2rrrd706qe"]
 
 [ext_resource type="Script" uid="uid://0830j8rr4v1s" path="res://game.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://djtuntd6b8o86" path="res://Levels/level_2.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bcc2u7ob4hpr4" path="res://Levels/level_3.tscn" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://bjcxbqyistkhw" path="res://Levels/level_1.tscn" id="5_lquwl"]
-[ext_resource type="AudioStream" uid="uid://d1nqqb6fbfxgn" path="res://Assets/Sounds/forest_bg_music.mp3" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://quwu6ks345go" path="res://Levels/level_4.tscn" id="6_efxa6"]
 [ext_resource type="Script" uid="uid://c8h6c3lptp58h" path="res://control.gd" id="7_5vw27"]
 [ext_resource type="FontFile" uid="uid://d1u1tm0cydedx" path="res://Assets/SupremeSpike-KVO8D.otf" id="7_272bh"]
@@ -13,6 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://2bdicod0oy04" path="res://Levels/Level_5.tscn" id="8_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://b21wnj3euncwe" path="res://Levels/goal_level.tscn" id="8_yyih5"]
 [ext_resource type="PackedScene" uid="uid://w2kbk2rss7db" path="res://player.tscn" id="9_4c57u"]
+[ext_resource type="AudioStream" uid="uid://bv65v103tpirv" path="res://Assets/Sounds/forest-background.wav" id="9_elkpi"]
+[ext_resource type="Script" uid="uid://cf08t0wehmc8l" path="res://music.gd" id="12_elkpi"]
+[ext_resource type="Texture2D" uid="uid://ck7p68krgsyp" path="res://Assets/sound_button.png" id="13_0yprl"]
+[ext_resource type="Texture2D" uid="uid://brrothihwn68p" path="res://Assets/sound_off_button.png" id="14_wuoie"]
+
+[sub_resource type="Gradient" id="Gradient_0yprl"]
+colors = PackedColorArray(0.355314, 0.355314, 0.355314, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_efxa6"]
+gradient = SubResource("Gradient_0yprl")
+fill = 1
+fill_from = Vector2(0.509174, 0.568807)
+fill_to = Vector2(0.197248, 0.316514)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
 font = ExtResource("7_272bh")
@@ -56,14 +68,14 @@ _data = {
 &"blink": SubResource("Animation_272bh")
 }
 
-[sub_resource type="Gradient" id="Gradient_pml6m"]
-colors = PackedColorArray(0.355314, 0.355314, 0.355314, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_elkpi"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_efxa6"]
-gradient = SubResource("Gradient_pml6m")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0yprl"]
+gradient = SubResource("Gradient_elkpi")
 fill = 1
-fill_from = Vector2(0.509174, 0.568807)
-fill_to = Vector2(0.197248, 0.316514)
+fill_from = Vector2(0.482906, 0.542735)
+fill_to = Vector2(0.811966, 0.269231)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -91,25 +103,43 @@ position = Vector2(0, -900)
 [node name="GoalLevel" parent="Levels" instance=ExtResource("8_yyih5")]
 position = Vector2(0, -1080)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_7mycd")
-volume_db = -15.0
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_elkpi")
+volume_db = -10.0
 autoplay = true
-parameters/looping = true
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(-86, 1063)
+
+[node name="TrajectoryLine" type="Line2D" parent="Player" node_paths=PackedStringArray("_player")]
+z_index = 50
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+default_color = Color(0, 0.364706, 1, 0.541176)
+script = ExtResource("8_kek77")
+_player = NodePath("../Player")
+
+[node name="Player" parent="Player" node_paths=PackedStringArray("trajectory_line") instance=ExtResource("9_4c57u")]
+z_index = 50
+position = Vector2(-42, -1082)
+trajectory_line = NodePath("../TrajectoryLine")
+
+[node name="PointLight2D" type="PointLight2D" parent="Player/Player"]
+texture = SubResource("GradientTexture2D_efxa6")
+texture_scale = 3.0
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Tutorial" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -160.0
 offset_top = -180.0
 offset_right = 159.0
 script = ExtResource("7_5vw27")
-metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,28 +157,244 @@ text = "Click and drag to jump!"
 label_settings = SubResource("LabelSettings_5vw27")
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Tutorial"]
 libraries = {
 &"": SubResource("AnimationLibrary_kek77")
 }
 autoplay = "blink"
 
-[node name="Player" type="Node2D" parent="."]
-position = Vector2(-86, 1063)
+[node name="Music" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("bg_music")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("12_elkpi")
+bg_music = NodePath("../../BackgroundMusic")
 
-[node name="TrajectoryLine" type="Line2D" parent="Player" node_paths=PackedStringArray("_player")]
-z_index = 50
-points = PackedVector2Array(0, 0, 0, 0)
-width = 1.0
-default_color = Color(0, 0.364706, 1, 0.541176)
-script = ExtResource("8_kek77")
-_player = NodePath("../Player")
+[node name="ToggleMusicButton" type="TextureButton" parent="CanvasLayer/Music"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("13_0yprl")
+texture_pressed = ExtResource("14_wuoie")
 
-[node name="Player" parent="Player" instance=ExtResource("9_4c57u")]
-z_index = 50
-position = Vector2(-42, -1082)
-
-[node name="PointLight2D" type="PointLight2D" parent="Player/Player"]
-texture = SubResource("GradientTexture2D_efxa6")
-texture_scale = 3.0
+[node name="Lights" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(-68, -41)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(-5, -73)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+position = Vector2(40, -105)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+position = Vector2(86, -132)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
+position = Vector2(130.5, -153)
+scale = Vector2(1.32813, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lights"]
+position = Vector2(40, -230)
+scale = Vector2(1.32813, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D7" type="PointLight2D" parent="Lights"]
+position = Vector2(95, -284)
+scale = Vector2(1.32813, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D8" type="PointLight2D" parent="Lights"]
+position = Vector2(34, -309)
+scale = Vector2(1.07813, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D9" type="PointLight2D" parent="Lights"]
+position = Vector2(-15, -341)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D12" type="PointLight2D" parent="Lights"]
+position = Vector2(148, -417)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D13" type="PointLight2D" parent="Lights"]
+position = Vector2(88, -449)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D14" type="PointLight2D" parent="Lights"]
+position = Vector2(7.62939e-06, -476)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D15" type="PointLight2D" parent="Lights"]
+position = Vector2(-86, -508)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D17" type="PointLight2D" parent="Lights"]
+position = Vector2(69, -661)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D18" type="PointLight2D" parent="Lights"]
+position = Vector2(138, -630)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D19" type="PointLight2D" parent="Lights"]
+position = Vector2(99, -598)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D20" type="PointLight2D" parent="Lights"]
+position = Vector2(-56, -656)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D21" type="PointLight2D" parent="Lights"]
+position = Vector2(-128, -643)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D22" type="PointLight2D" parent="Lights"]
+position = Vector2(-146, -693)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D23" type="PointLight2D" parent="Lights"]
+position = Vector2(119, -771)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D24" type="PointLight2D" parent="Lights"]
+position = Vector2(122, -820)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D25" type="PointLight2D" parent="Lights"]
+position = Vector2(40, -857)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D26" type="PointLight2D" parent="Lights"]
+position = Vector2(-41, -857)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D27" type="PointLight2D" parent="Lights"]
+position = Vector2(-60, -803)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D28" type="PointLight2D" parent="Lights"]
+position = Vector2(-112, -872)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D29" type="PointLight2D" parent="Lights"]
+position = Vector2(-57, -1016)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D30" type="PointLight2D" parent="Lights"]
+position = Vector2(16, -1057)
+scale = Vector2(1.34375, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D16" type="PointLight2D" parent="Lights"]
+position = Vector2(-136, -450)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D10" type="PointLight2D" parent="Lights"]
+position = Vector2(-41, -284)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="PointLight2D11" type="PointLight2D" parent="Lights"]
+position = Vector2(-96, -238)
+scale = Vector2(0.921875, 1)
+color = Color(0, 0.592157, 1, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0yprl")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.753984, 0.753984, 0.753984, 1)

@@ -11,7 +11,7 @@ var _mouse_end_pos: Vector2
 
 @export var _player: Player
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse_click"):
 		_is_dragging = true
 		_mouse_origin_pos = get_global_mouse_position()

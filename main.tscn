@@ -45,4 +45,4 @@ label_settings = SubResource("LabelSettings_ig7tw")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-text = "PLAY GAME"
+text = "Play Now"

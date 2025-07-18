@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://efrlnsa5kpee"]
+[gd_scene load_steps=7 format=3 uid="uid://efrlnsa5kpee"]
 
 [ext_resource type="Script" uid="uid://w82xoesjixqk" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="PackedScene" uid="uid://buwh50hchyjih" path="res://death_effects.tscn" id="2_qi2p4"]
@@ -6,6 +6,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o7y8f"]
 radius = 5.38516
+
+[sub_resource type="Gradient" id="Gradient_pml6m"]
+colors = PackedColorArray(0.355314, 0.355314, 0.355314, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qi2p4"]
+gradient = SubResource("Gradient_pml6m")
+fill = 1
+fill_from = Vector2(0.509174, 0.568807)
+fill_to = Vector2(0.197248, 0.316514)
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_4gyqm")
@@ -23,3 +32,8 @@ script = ExtResource("3_qi2p4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_o7y8f")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.0
+texture = SubResource("GradientTexture2D_qi2p4")
+metadata/_edit_lock_ = true
